@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY NEW YEAR</title>
+    <style>
+        .bullet{
+            position: absolute;
+            font-size: 20px;
+            color: white;
+            text-shadow: 1px 1px 1px black;
+            white-space:nowrap;
+            overflow: hidden;
+        }
+     </style>
+</head>
+<body
+     background="https://img.zcool.cn/community/0181745c418b39a801203d22454a1b.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100/quality,q_100/format,webp"
+      style="background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;">
+     <font size="100"><strong><center>新年快乐！</center></strong></font>
+     <div id="container"></div>
+    <script>
+        var container = document.getElementById('container');
+        var data = [
+            {text: '山高有行路，水深有渡舟，和气作春妍，新年胜旧年',color: 'red' },
+            {text: '新年新气象，祝大明步步高升，学业有成，早日找到自己心灵的归属--张蛋蛋',color: 'yellow' },
+            {text: '愿你的每一天都充满阳光和欢笑，每一步都走得坚定而有力。在这辞旧迎新的时刻，祝你新年快乐，万事如意！',color: 'pink' },
+            {text: '希望家里人健健康康的，也希望zyc快快乐乐的成长',color:'pink' }
+            
+        ];
+        var speed = 2;
+        var interval = 1000;
+        var topArr = [];
+        for (var i = 0;i < 28; i++){
+            topArr.push(i * 40);
+
+        }
+        var index = 0;
+        var timer = setInterval(function () {
+            var bullet = data[index];
+            var span = document.createElement('span');
+            span.className = 'bullet';
+            span.innerText = bullet.text;
+            span.style.color = bullet.color;
+            var top = topArr[Math.floor(Math.random()*topArr.length)];
+            span.style.top = top + 'px';
+            container.appendChild(span);
+            var width = span.offsetWidth;
+            var left = container.offsetWidth;
+            span.style.left = left + 'px';
+            var bulletTimer = setInterval(function(){
+                left -= speed;
+                span.style.left = left + 'px';
+                if (left<-width){
+                    container.removeChild(span);
+                    clearInterval(bulletTimer);
+                }
+            },10);
+            index++;
+            if (index >= data.length){
+                index = 0;
+            }
+            
+        },interval);
+    </script>
+
+</body>
+</html>
